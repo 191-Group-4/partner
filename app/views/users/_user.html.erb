@@ -1,5 +1,5 @@
-<% if current_user.role == "user"%> <% if user.role == "user"%>
-<% if current_user.id != user.id && current_user.status == false%>
+<% if current_user.role == "user"%><% if current_user.id != user.id%> 
+<% if user.role == "user" && current_user.status == false%>
 		<td><%= user.name %></td>     <td><%= link_to user.email, user %></td>	
 		<% if user.status == false%>
 				<td>Available</td>
@@ -14,7 +14,7 @@
 	<% end %>
 <%end%>
 <% elsif current_user.role!= "user"%>
-	<% if current_user.id != user.id && user.role=="user"%>
+	<% if user.role=="user"%>
 	            <tr> <td><%= user.name %></td><td><%= user.partner1 %></td></tr>
 	<%end%>
 <%end%>
