@@ -44,13 +44,21 @@ img#kaylogo {
     position: fixed;
     bottom: 0px;
     right: 20%; 
-    opacity:0.0;
-    filter:alpha(opacity=00); 
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=00)";
+filter: alpha(opacity=00);
+-moz-opacity: 0;
+-khtml-opacity: 0;
+opacity: 0;
+
 }
 
 img#kaylogo:hover{
-    opacity:1.0;
-    filter:alpha(opacity=100); /* IE8 and earlier */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+filter: alpha(opacity=100);
+-moz-opacity: 1;
+-khtml-opacity: 1;
+opacity: 1;
+
     width:10%;
 
 }
