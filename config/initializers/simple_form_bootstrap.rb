@@ -67,4 +67,5 @@ end
   # to learn about the different styles for forms and inputs,
   # buttons and other elements.
   config.default_wrapper = :bootstrap
+  
 end

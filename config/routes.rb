@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  get 'users/profile'
+  get 'help/index'
 
   root :to => "visitors#index"
-  devise_for :users
+#  devise_for :users
+devise_for :users, :controllers => { registrations: 'registrations' }
 
 
   resources :users do
@@ -10,21 +13,11 @@ Rails.application.routes.draw do
         get :cancel
         get :clearall
         get :export
+        get :registrations
         get :clearpartnership
+        get :confirm
     end
     end
-
-
-  resources :contacts do
-    member do
-        get :new
-        get :create
-        get :bug
-    end
-    end
-
-get '/bug', to: 'contacts#bug'
-get '/contacts/new', to: 'contacts#new'
 
 devise_scope :user do
   get "sign_in", to: "devise/sessions#new"

@@ -1,0 +1,15 @@
+<div style="width:100%;">
+	<div class= "profilediv" style="width: 27%; padding: 2% 2% 3% 2%; text-align:center;">
+		<%= image_tag current_user.avatar.url %><br><br>
+
+
+
+	</div> 
+	<div class= "profilediv" style="padding: 2% 0% 4% 2%; width: 40.6%; text-align:left;">	
+
+<h3>Profile Page of <b><%= current_user.name%></h3></b>
+<p>Name: <%= current_user.name if current_user.name %></p>
+<p>Email: <%= current_user.email if current_user.email %></p>
+<p>Last Sign In: <%= current_user.last_sign_in_at if current_user.last_sign_in_at %></p>
+ <%= link_to 'Edit account', edit_user_registration_path %> <br>
+	</div>

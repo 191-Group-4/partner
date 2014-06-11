@@ -1,0 +1,9 @@
+<% if current_user.role=="user"%>
+
+  <h3>Find a Partner</h3>
+  <table style="width:85%;"> <tr><td style="width:10%;"><b>Student Name</td><td style="width:12%;"><b>Email</td><td style="width:15%"><b>Available?</td></td> <td style="width:11%;"><b>Request</td></table></b>
+
+<% elsif current_user.role!= "user"%>
+  <h3>View Roster</h3>
+  <table style="width:67%;"> <tr><td><b>Student Name</td><td><b>Partner</td></td> </table></b>
+  <%end%>

@@ -4,37 +4,16 @@
 <% if (current_user.status == true && current_user.partner1.empty?) || (current_user.status == false && !current_user.partner1.empty?)%>
 <%= link_to "Find A Partner", clearpartnership_user_path(current_user), :class=>"requestbutton"%>
 <%else%>
-
-
-<% if current_user.role=="user"%>
-  <h3>Find a Partner</h3>
-  <table style="width:85%;"> <tr><td style="width:10%;"><b>Student Name</td><td style="width:12%;"><b>Email</td><td style="width:15%"><b>Available?</td></td> <td style="width:11%;"><b>Request</td></table></b>
-<% elsif current_user.role!= "user"%>
-  <h3>View Roster</h3>
-  <table style="width:67%;"> <tr><td><b>Student Name</td><td><b>Partner</td></td> </table></b>
-
-
-<%end%>
+<%= render "users/tableheader"%>
       <div class="column" style="width:100%;">
         <table class="table" style="width:85%;">
           <tbody>
               <% @users.each do |user| %>
-              <tr><%= render user %></tr>
+              <tr><%= render user %></tr></div>
               <% end %>
           </tbody>
         </table>
       </div>
-
-
-      <%if current_user.role != "user"%>
-       <div class="profilediv"><%=link_to 'Export Table', export_user_path(current_user), :class=>"export" %></div>
-       <div class="profilediv" style="float:right; padding-right:7%;"><%=  link_to "Reset All Partnerships", clearall_user_path(current_user), :data => { :confirm => "Are you sure? 
-        This will clear ALL partnerships
-
-
---  Make sure to export table first  --" }, :class=>"clear" %></div>
-      <% end %>
-      <%end%>
-     
-    </div>
+      <%= render "users/vipbuttons"%>
+      <%end%>    </div>
   </div>

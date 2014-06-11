@@ -1,9 +1,9 @@
 .navbar{
   border:1px solid #8EA2B2;
-  border-bottom: 6px solid #006BB2;;
+  border-bottom: 3px solid #006BB2;;
 }
 
-.navbar-inner {
+.navbar-default {
   background-image: -moz-linear-gradient(top, #ffffff, #cde6f7);
   background-image: -ms-linear-gradient(top, #ffffff, #cde6f7);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#cde6f7));
@@ -14,24 +14,14 @@
   box-shadow: 1px 1px 1px #999;
 }
 
-.navbar .brand {
-  padding: 0px 0px 0px 0px;
-  margin: 0px 0px 0px 0px;
-  font-size: 0px;
-  color: #4f4d4d;
-}
-
-.navbar .divider-vertical {
-  height: 50px;
-  background-color: #;
-  border-right: 1px solid #;
-}
 
 .navbar .nav > li > a {
-  padding: 15px 10px 11px;
-  font-size: 16px;
+  padding: 19px 15px 13px;
+  font-size: 17px;
+  font-weight: 590;
   color: #000000;
 }
+
 .navbar .nav > li > a:hover,
 .navbar .nav > li > a:focus {
   background-color:#006BB2;
@@ -39,7 +29,7 @@
   box-shadow: 1px 1px 1px #999;
   border-top-left-radius: 15px;
   border-top-right-radius:15px;
-    padding: 15px 10px 11px;
+  padding: 19px 15px 13px;
 }
 
 .navbar .nav > .active > a,
@@ -47,3 +37,61 @@
 .navbar .nav > .active > a:focus {
   color: #000000;
 }
+
+.navbar .nav > li > a:focus {
+  background-color:#006BB2;
+  color:#ffffff;
+  box-shadow: 1px 1px 1px #999;
+  border-top-left-radius: 15px;
+  border-top-right-radius:15px;
+  padding: 19px 15px 13px;
+}
+
+
+
+.radio input[type="radio"],
+.radio-inline input[type="radio"],
+.checkbox input[type="checkbox"],
+.checkbox-inline input[type="checkbox"] {
+  float: left;
+  margin-left: 0px;
+}
+
+#loading {
+    position:absolute;
+    background-color: #000000;
+    opacity: 0.8;
+    padding: 1em;
+    display: none;
+   top: 50%;
+   left: 50%;
+   width: 199px;
+   height: 199px;
+   margin-top: -100px; /* Half the height */
+   margin-left: -100px;
+}
+
+.popbox {
+    display: none;
+    position: fixed;
+    z-index: 99999;
+    width: 300px;
+    padding: 10px;
+    background: #EEEFEB;
+    color: #000000;
+    border: 1px solid #4D4F53;
+    margin: 0px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(164, 164, 164, 1);
+    box-shadow: 0px 0px 5px 0px rgba(164, 164, 164, 1);
+}
+.popbox h2
+{
+    background-color: #4D4F53;
+    color:  #E3E5DD;
+    font-size: 14px;
+    display: block;
+    width: 300px;
+    margin: -10px 0px 8px -10px;
+    padding: 5px 10px;
+}
+

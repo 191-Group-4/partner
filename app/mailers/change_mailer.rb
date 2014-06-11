@@ -1,7 +1,7 @@
 class ChangeMailer < ActionMailer::Base
-  default from: "ryderc@uci.edu"
-
+default :from => 'partnerupuci@uci.edu'
  def send_change_message(user)
-    mail(:to => user, :subject => "A change has been made to your Partner Up account")
+    mail(:to => user, :subject => "Your Partnership Status has changed")
   end
+  #handle_asynchronously :send_change_message
 end

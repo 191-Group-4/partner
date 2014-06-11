@@ -10,13 +10,25 @@ def index
 end
 def new
   @partners = User.find(params[:id])
+  @users = User.all
+  #@user = User.find(params[:id])
+  authorize @users
 end
 def show
   @user = User.find(params[:id])
   unless user_signed_in?
 # unless @user == current_user
+  authorize @user
   redirect_to :back, :alert => "Access denied."
   end
+end
+
+def profile
+  #unless user_signed_in?
+# unless @user == current_user
+  @users = current_user
+  authorize @users
+  #redirect_to :back, :alert => "Access denied."
 end
 
 def update
@@ -44,7 +56,6 @@ end
 # If the user is unpartnered, it will partner them
 # Partnering sets status to 1 or true and fills the current_user (and their partner's) partner1 with the other person's name
 def flop
-  if current_user.role == "user"
   user = User.find(params[:id])
   authorize user
   user.status = !user.status # flop the status
@@ -63,8 +74,10 @@ def flop
     user.save
     current_user.save
     redirect_to users_path(current_user)
-end
-ChangeMailer.send_change_message(user.email).deliver
+    # Delay Mailer to reduce flop lag
+    #ChangeMailer.delay.send_change_message(user.email)
+    # Regular Mailer no delay
+  ChangeMailer.send_change_message(user.email).deliver
 end
 
 # Cancels account and ensures partnerships are cleared
@@ -97,11 +110,11 @@ end
 # Clear all users partner1 columns to "" and reset statuses to 0 or false
 def clearall
   User.all.each do |user|
-  user = User.find(user)
-  authorize user
-  user.status = false
-  user.partner1 = ""
-  user.save
+    user = User.find(user)
+    authorize user
+    user.status = false
+    user.partner1 = ""
+    user.save
 end
   redirect_to users_path(current_user), :alert => "All Partnerships have been cleared."
 end
@@ -119,6 +132,20 @@ def export
   send_data(roster_csv, :type => 'text/csv', :filename => 'partnerships.csv')
 end
 
+def confirm
+    time = Time.new
+    user = User.find(params[:id])
+    authorize user
+    user.confirmed_at = time.strftime("%Y-%m-%d %H:%M:%S")
+    user.save
+    redirect_to users_path(current_user), :flash => { :success => "User Confirmed" }
+end
+
+def deleteavatar
+authorize User.all
+@user.avatar = nil
+@user.save
+end
 
   private
   def secure_params

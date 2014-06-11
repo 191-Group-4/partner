@@ -1,13 +1,14 @@
 <li><%= link_to 'Home', root_path %></li>
       <%# add navigation links to this file %>
 <% if user_signed_in? %>
-
-<% if current_user.role=="user"%>
-<li><%= link_to 'Find a Partner', users_path %></li>
-<% elsif current_user.role=="admin"||"vip"%>
-<li><%= link_to 'View Roster', users_path %></li>
-<%end%>
-
+	<% if current_user.role=="user"%>
+		<li><%= link_to 'Profile', users_profile_path %></li>
+		<li><%= link_to 'Find a Partner', users_path %></li>
+		<li><%= link_to 'Help', help_index_path %></li>
+	<% elsif current_user.role=="admin"||"vip"%>
+		<li><%= link_to 'View Roster', users_path %></li>
+		<li><%= link_to 'Help', help_index_path %></li>
+	<%end%>
 <% else %>
   <li><%= link_to 'Sign in', new_user_session_path %></li>
   <li><%= link_to 'Create Account', new_user_registration_path %></li>

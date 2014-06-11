@@ -1,29 +1,9 @@
 <h2>Welcome to Partner UP!</h2>	
 <% if user_signed_in? %>
 	<% if current_user.role=="user"%>
-		<div class= "profilediv" style="width: 20%; padding: 2% 2% 3% 2%; text-align:center;">
-		<%= image_tag(current_user.imgsrc, width: '80%' ) %><br><br></div> 
-		<div class= "profilediv" style="padding: 2% 0% 4% 2%; width: 45.6%; text-align:left;">	
-		<h3>Profile Page of <b><%= current_user.name%></h3></b>
-		<p>Name: <%= current_user.name if current_user.name %></p>
-		<p>Email: <%= current_user.email if current_user.email %></p>
-		<p>Last Sign In: <%= current_user.last_sign_in_at if current_user.last_sign_in_at %></p></div>
-		<div class= "bigdiv" style="padding: 2% 2% 2% 1%; width: 30%; text-align:center;">	
-		<h2>Partner Status</h2>	
-							<% if current_user.status == false%><br>
-								<b>You have no partner</b><br><br>
-								<%= link_to ' Find a Partner', users_path, :class=> "bluebutton" %><br><br>
-							<% else %><br>
-								 <% User.all.each do |user| %>
-									 <% if current_user.partner1 == user.name %>
-							  		  <h4>You are partnered with <br><b><%= user.name%></b> </h4>
-							  		  <%= image_tag(user.imgsrc, width: '30%' ) %>
-								     <% end %>
-								 <%end%>
-							<%end%></div><%= render "visitors/userwelcomemsg"%></div>
-		<%elsif current_user.role == "1"||"2"%><p>There are currently <%= User.count %> registered users </p>
-		<%= render "visitors/adminwelcomemsg"%>
-		
+		<%= render "visitors/statusbox"%>
+		<%elsif current_user.role == "1"||"2"%><p>
+		There are currently <%= User.count %> registered users </p>
 		<%end%>
-<%else%> <%= render "visitors/welcomemsg"%>
-<%end%></div>
+		<%else%> <%= render "visitors/welcomemsg"%>
+<%end%>

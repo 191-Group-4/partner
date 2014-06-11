@@ -20,7 +20,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string   :last_sign_in_ip
       t.boolean :status, :default => 0
       t.string   :partner1, :default=> ""
-      t.string    :imgsrc, :default =>"http://www.naijaticketshop.com/images/default_profile.jpg"
 
 
       ## Confirmable
@@ -40,7 +39,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true
-end
     # add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true
   end

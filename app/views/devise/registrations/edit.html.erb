@@ -13,7 +13,21 @@
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
     </div>
-      <h4>Optional</h4>
+         <fieldset style="margin:5px 0px 5px 0px; padding: 20px 50px 20px 50px; text-align:center;"><div class="form-group"><h4>Profile Picture</h4>
+  <b>Image Upload</b><br>
+<div class="fileupload fileupload-new" data-provides="fileupload">
+  <div class="fileupload-preview thumbnail" style="width: 200px; height: 150px;"></div>
+  <div>
+    <span class="btn btn-file"><%= f.file_field :avatar %>
+      <span class="fileupload-new">Select image</span>
+      <span class="fileupload-exists">Change</span>
+      <input type="file" />
+    </span>
+    <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+  </div>
+</div></fieldset>
+        <fieldset style="padding: 20px 50px 20px 50px;">
+      <h4>Change Password</h4>
       <p style="font-size:13px;">Leave blank if you don't want to change your password</p>
       <div class="form-group">
         <b>Choose a New</b> <%= f.label :password %>
@@ -23,13 +37,13 @@
         <b>New </b><%= f.label :password_confirmation %>
         <%= f.password_field :password_confirmation, class: 'form-control' %>
       </div>
-    <fieldset>
+          </fieldset>
+          <h4>Verify Changes</h4>
       <p>Enter your current password to make changes</p>
       <div class="form-group">
         <%= f.label :current_password %><font size="5" color="red">*</font>
         <%= f.password_field :current_password, class: 'form-control' %>
       </div>
-    </fieldset>
     <%= f.submit 'Update', :class => 'updatebutton', :style => 'width:53%; height:55px; float:center;' %>
   <% end %>
 </div>

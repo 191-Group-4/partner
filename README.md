@@ -5,21 +5,22 @@ Partner up 1.0 is a partner management website that will update the current meth
 
 Description of MVP
 -----------------
->Our MVP has succeeded in implementing the following features
-Account Creation, Updating and Deleting
-Partnerships based on student input
-Partner data spreadsheet
->What ifs covered
-+ What if a user forgets their password?
-+ What if students make more than one account?
-+ What if students drop the class?
-+ What if the user encounters a bug?
-+ What if someone else accessed their email account and used a forgot password link to reset the password?
-+ What if a confirmation email never arrives
+Our MVP has succeeded in implementing the following features
 
+1.  Account Creation, Updating and Deleting
+2.  Partnerships based on student input
+3.  Partner data spreadsheet output
+4.  What ifs covered
+    * What if a user forgets their password?
+    * What if students make more than one account?
+    * What if students drop the class?
+    * What if the user encounters a bug?
+    * What if someone else accessed their email account and used a forgot password link to reset the password?
+    * What if a confirmation email never arrives?
+    * What if a user sends 5 confirmation emails, which link is valid and which expires?
 
->It uses accounts created in the database to identify users and has different views for different user "roles". It requires email confirmation to sign in and access the features of the website. We have a feature in case students forget their password that will email a link to allow them to change their password. This will prevent students from being locked out of their account. Forgot password and email confirmations will expire after a given amount of time, and only one token is active at a time. This is to add a layer of security so users will not have their accounts comprimised if their email accounts are comprimised.
->Professors and TAs can view the list of students signed up and their respective partners. At the bottom of the table there is a button that will download the table in csv format. At the moment we only track one project at a time, so in the case of a new project the TA user could clear the table and reset the users to unpartnered status, after downloading the partnerhip data of the previous project.
+&nbsp;&nbsp;&nbsp;&nbsp;It uses accounts created in the database to identify users and has different views for different user "roles". It requires email confirmation to sign in and access the features of the website. We have a feature in case students forget their password that will email a link to allow them to change their password. This will prevent students from being locked out of their account. Forgot password and email confirmations will expire after a given amount of time, and only one token is active at a time. This is to add a layer of security so users will not have their accounts comprimised if their email accounts are comprimised.<br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Professors and TAs can view the list of students signed up and their respective partners. At the bottom of the table there is a button that will download the table in csv format. At the moment we only track one project at a time, so in the case of a new project the TA user could clear the table and reset the users to unpartnered status, after downloading the partnerhip data of the previous project.
 
 
 Diagnostics
@@ -132,13 +133,13 @@ Documentation and Support
 | Admin   | Webmaster                     | 2             |
 
 ######Status
->Status is a boolean value of the partnership status of a user. "True" or 1 means 'is partnered'. "False" or 0 means 'is NOT partnered'
++ Status is a boolean value of the partnership status of a user. "True" or 1 means 'is partnered'. "False" or 0 means 'is NOT partnered'
 
 ######Partner1
->Partner1 is a column of corresponding names of the partners.  This should probably be done by ID in the future to make it easier to find current_user's partner's imgsrc for example.
++ Partner1 is a column of corresponding names of the partners.  This should probably be done by ID in the future to make it easier to find current_user's partner's imgsrc for example.
 
 ######Imgsrc
->Pictures are stored in the database as URLs for now.
++ Pictures are stored in the database as URLs for now.
 
 #### Contact
 empty for now
@@ -168,18 +169,20 @@ Currently filled with pundit code for authorization. Available if we need it lat
 
 ###3. Views
 ####Layout#Application
->In every page header, the _headerbar.html.erb partial is rendered.  That's the partnerup logo and the sign out/edit links. Then the _navigation.html.erb is rendered. That's the Nav bar Then the body first leaves room for dismissable bootstrap messages to be displayed at the top of the body. Then yields to content. The footer contains _footer.html.erb which is the report bug, submit suggestion and the kay easter egg.
+In every page header, the _headerbar.html.erb partial is rendered.  That's the partnerup logo and the sign out/edit links. Then the _navigation.html.erb is rendered. That's the Nav bar Then the body first leaves room for dismissable bootstrap messages to be displayed at the top of the body. Then yields to content. The footer contains _footer.html.erb which is the report bug, submit suggestion and the kay easter egg.
 There are two main pages that will be used, visitors#index and users#index.
+<img src=http://i57.tinypic.com/2rcc03c.png>
 
 ####Visitors#Index
->Visitors index is the "Homepage". It displays your profile info and partner status if you're a user, or number of registered users if you're a admin/vip. If you are not signed in, 
+Visitors index is the "Homepage". It displays your profile info and partner status if you're a user, or number of registered users if you're a admin/vip. If you are not signed in, 
 
 ####Users#Index
 First we check for database inconsistencies that will cause problems with rendering the page.
->>######if (current_user.status == true && current_user.partner1.empty?) || (current_user.status == false && !current_user.partner1.empty?)
->>First users index checks to make sure that the current user doesn't have either
 
->>+ If they are partnered with no name in their partner column
+    if (current_user.status == true && current_user.partner1.empty?) || (current_user.status == false && !current_user.partner1.empty?)</b>
+>First users index checks to make sure that the current user doesn't have either
+
+>+ If they are partnered with no name in their partner column
     + Partner Status set to TRUE with Partner1 set to .empty?
 + If they are UNpartnered with a name in their partner column
     + Partner Status set to FALSE with Partner1 set to !.empty?
@@ -192,12 +195,15 @@ First we check for database inconsistencies that will cause problems with render
 
 
 >+ For students this is a table of other students names, emails, status and request button. Students will see a different views based on their partner status. This is done with if statements in the view. There is probably a better way to do this in the future.
->+ For admins/vips this is a table of student names and their partners. Below that list are two buttons, to export the data to csv format, and to clear the database of all partnerships and reset all users status to 0/false andall users partner1 to "".
+>+ For admins/vips this is a table of student names and their partners. Below that list are two buttons, to export the data to csv format, and to clear the database of all partnerships and reset all users status to 0/false and all users partner1 to "".
 
+<img src= http://i60.tinypic.com/14tlhft.png>
 
 ### Issues
 
-+ Report Bug contact form used to be merged in visitors controller. Routes may be affected by the change to contacts controller.
+<s>+ Report Bug contact form used to be merged in visitors controller. Routes may be affected by the change to contacts controller.</s>
+
++ Report bug not working at the moment
 
 Credits
 -------

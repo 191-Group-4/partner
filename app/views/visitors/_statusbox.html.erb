@@ -1,0 +1,30 @@
+<div class= "bigdiv" style="width: 50%; padding: 2% 0% 3% 2%; text-align:center;">
+<table class = "table" style = "width:100%;">
+  <tr>
+    <th>Course ID</th>
+    <th>Course Number</th>
+    <th>Course Title</th>
+  </tr>
+  <tr>
+    <td>36570</td>
+    <td>I&C SCI 31</td>
+    <td>Introduction to Programming</td>
+  </tr>
+</table>
+
+
+</div>
+<div class= "profilediv" style="padding: 2% 2% 4% 2%; width: 20%; text-align:left;"></div>
+<div class= "bigdiv" style="padding: 2% 2% 2% 1%; width: 30%; text-align:center;">	
+<h2>Partner Status</h2>	
+					<% if current_user.status == false%><br>
+						<b>You have no partner</b><br><br>
+						<%= link_to ' Find a Partner', users_path, {:style=>'width:90%;', :class => "bluebutton"} %><br><b>
+					<% else %><br>
+						 <% User.all.each do |user| %>
+							 <% if current_user.partner1 == user.name %>
+					  		  <h4>You are partnered with <br><b><%= user.name%></b> </h4>
+					  		  <%= image_tag user.avatar.url, :style=>'width:25%;' %>
+						     <% end %>
+						 <%end%>
+					<%end%></div></b>

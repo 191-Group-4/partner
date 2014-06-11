@@ -25,7 +25,6 @@ background: -o-radial-gradient(center, ellipse cover,  #ffffff 0%,#c7e3f9 71%,#b
 background: -ms-radial-gradient(center, ellipse cover,  #ffffff 0%,#c7e3f9 71%,#b3cce0 100%);
 background: radial-gradient(ellipse at center,  #ffffff 0%,#c7e3f9 71%,#b3cce0 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#b3cce0',GradientType=1 );
-
 display:inline-block;
 float: left;
 font-family:arial;color:black;font-size:14px;
@@ -39,6 +38,7 @@ box-shadow: 1px 1px 1px #999;
   float: left;
   font-family:arial;color:black;font-size:14px;
 }
+
 
 img#kaylogo {
     position: fixed;

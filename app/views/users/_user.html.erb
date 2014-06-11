@@ -1,20 +1,60 @@
-<% if current_user.role == "user"%><% if current_user.id != user.id%> 
-<% if user.role == "user" && current_user.status == false%>
-		<td><%= user.name %></td>     <td><%= link_to user.email, user %></td>	
-		<% if user.status == false%>
-				<td>Available</td>
-				<td><%=  link_to "Partner", flop_user_path(user), :class=>"requestbutton" %></td><td></td>
-		<%else%><td>Partnered</td><td></td>
+<script text/javascript>
+function hideLoading() {
+    // other code can be placed here 
+    $("#loading").hide();
+    // other code can be placed here
+}
+
+function showLoading() {
+    // other code can be placed here 
+    $("#loading").show();
+    // other code can be placed here
+}
+
+function dosomething() {
+    showLoading();
+    // simulate a task that can take 3 seconds
+    // afterwards show hide the loading GIF
+    setTimeout("hideLoading()", 3000);
+    return false;
+}
+</script>
+<div style="position: relative;">
+<%case current_user.role %>
+<%when "user"%>
+  	<% if current_user.id != user.id%> 
+		<% if user.role == "user" && current_user.status == false%>
+				<td><%= link_to (image_tag (user.avatar.url), :style => 'max-height: 25xpx; max-width: 25px;'), user %></td> <td><%= link_to user.name, user %></td>     <td><%= user.email %></td>	
+				<% if user.status == false%>
+						<td>Available</td>
+						<td><%=  link_to "Partner", flop_user_path(user), :class=>"requestbutton", :onclick=>"dosomething();" %><div id="loading">
+    <img src="http://www.webdesign.org/img_articles/13053/loading-gif-animation.gif" alt="loading" />
+</div></td><td>
+</td>
+				<%else%><td>Partnered</td><td></td>
+				<% end %>
+		<%elsif current_user.partner1 == user.name %>
+					<td><%= link_to user.name, user %></td>
+					<td><%= user.email %></td>	
+					<td>You are already partnered with <%= current_user.partner1 %> </td>
+					<td><%=  link_to "UNDO", flop_user_path(user), :class=>"button" , :onclick=>"dosomething();"%>
+<div id="loading">
+    <img src="http://www.webdesign.org/img_articles/13053/loading-gif-animation.gif" alt="loading" />
+</div></td>
 		<% end %>
-	<%elsif current_user.partner1 == user.name %>
-			<td><%= current_user.partner1 %></td>
-			<td><%= link_to user.email, user %></td>
-			<td>You are already partnered with <%= current_user.partner1 %> </td>
-			<td><%=  link_to "UNDO", flop_user_path(user), :class=>"button" %></td>
-	<% end %>
-<%end%>
-<% elsif current_user.role!= "user"%>
-	<% if user.role=="user"%>
-	            <tr> <td><%= user.name %></td><td><%= user.partner1 %></td></tr>
+	<%end%>
+<%when "vip"%>
+  <% if user.role=="user"%>
+         <tr> <td><%= user.name %></td><td><%= user.partner1 %></td></tr>
+	<%end%>
+<%when "admin"%>
+  <% if user.role=="user" && user.confirmed_at==nil%> 
+         <tr> <td><%= user.name %></td><td>
+         	<%=  link_to "Confirm", confirm_user_path(user), :class=>"button"%><div id="loading">
+    <img src="http://www.webdesign.org/img_articles/13053/loading-gif-animation.gif" alt="loading" width="80%" />
+</div></td><td></td>
 	<%end%>
 <%end%>
+
+
+ </div>
