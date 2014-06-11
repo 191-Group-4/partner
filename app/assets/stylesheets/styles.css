@@ -57,20 +57,6 @@
   margin-left: 0px;
 }
 
-#loading {
-    position:absolute;
-    background-color: #000000;
-    opacity: 0.8;
-    padding: 1em;
-    display: none;
-   top: 50%;
-   left: 50%;
-   width: 199px;
-   height: 199px;
-   margin-top: -100px; /* Half the height */
-   margin-left: -100px;
-}
-
 .popbox {
     display: none;
     position: fixed;
